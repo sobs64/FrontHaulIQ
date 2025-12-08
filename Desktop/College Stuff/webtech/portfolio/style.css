@@ -1,0 +1,105 @@
+/* your original style.css reused exactly as uploaded */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7fa;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+header {
+  background: #093159;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.name {
+  font-size: 2.75rem;
+  font-weight: 700;
+}
+
+.links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.link-btn {
+  text-decoration: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+main {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.achievement-item {
+  background: #f5f7fa;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #d5dce6;
+  margin-bottom: 18px;
+}
+
+.achievement-details {
+  display: none;
+  margin-top: 12px;
+}
+
+.achievement-item.active .achievement-details {
+  display: block;
+}
+
+.achievement-image {
+  margin-bottom: 16px;
+}
+
+.achievement-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 450px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+footer {
+  margin-top: 80px;
+  background: #093159;
+  color: white;
+  text-align: center;
+  padding: 24px 0;
+}

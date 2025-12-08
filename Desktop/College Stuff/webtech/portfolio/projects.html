@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Sohan B</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+      justify-content: start;
+      margin-left: -165px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid #d5dce6;
+      border-radius: 10px;
+      padding: 24px;
+      width: 680px;
+    }
+
+    .project-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1 class="name">Projects</h1>
+    <div class="links">
+      <a href="index.html" class="link-btn">Home</a>
+      <a href="projects.html" class="link-btn">Projects</a>
+      <a href="mailto:your-email@example.com" class="link-btn">Email</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="projects-grid">
+
+    <!-- MoodTrip AI -->
+    <div class="project-card">
+      <h2 class="project-title">MoodTrip AI — AI Travel Planner</h2>
+      <div class="video-container">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/fH4Xn8e6klk" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <p>
+        MoodTrip AI is a React Native travel planner that creates custom itineraries based on mood, weather,
+        budget, location, and preferences. Includes AI suggestions, map integration, and itinerary sharing.
+      </p>
+      <ul>
+        <li>Google Maps API + AI recommendations</li>
+        <li>React Native + Expo + Firebase auth</li>
+        <li>Custom travel mood detection logic</li>
+      </ul>
+    </div>
+
+    <!-- Loan Advisor -->
+    <div class="project-card">
+      <h2 class="project-title">Loan Advisor — Multilingual Conversational App</h2>
+      <div class="video-container">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/4ijSa7BhjLg" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <p>
+        A React Native app that explains loan eligibility, documents, and financial concepts in multiple languages.
+      </p>
+      <ul>
+        <li>Multilingual conversational flows</li>
+        <li>OCR, document validation, fraud detection</li>
+        <li>Voice + text interface</li>
+      </ul>
+    </div>
+
+    <!-- Inventory Manager -->
+    <div class="project-card">
+  <h2 class="project-title">Farmako+ — Medical Appointment & Pharmacy Assistant</h2>
+  <div class="video-container">
+        <iframe width="100%" height="100%" src="https://youtube.com/embed/q7vUWzGn_xA" frameborder="0" allowfullscreen></iframe>
+      </div>
+  <p>
+    Farmako+ is a smart healthcare assistant designed to help users easily book medical appointments, 
+    manage prescriptions, and access pharmacy services. The system streamlines doctor availability tracking, 
+    appointment scheduling, and medicine lookup through a clean, user-friendly interface.
+  </p>
+  <ul>
+    <li>Doctor availability dashboard with real-time updates</li>
+    <li>Appointment booking system with patient scheduling workflow</li>
+    <li>Pharmacy module for checking medicine stock and alternatives</li>
+    <li>Integrated user authentication and profile management</li>
+    <li>Built with React / React Native UI and SQL-based backend</li>
+  </ul>
+</div>
+
+
+    <!-- Virtual Lab: TSP -->
+    <div class="project-card">
+      <h2 class="project-title">Virtual Lab — Traveling Salesman Problem (TSP)</h2>
+      <p>
+        A virtual interactive platform where students can learn TSP concepts visually.
+      </p>
+      <ul>
+        <li>Graph plotting + dynamic path visualizer</li>
+        <li>Brute force, Greedy, DP, and heuristic methods</li>
+        <li>Educational UI similar to Virtual Labs</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Portfolio © Sohan B</p>
+  </div>
+</footer>
+
+</body>
+</html>
