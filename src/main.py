@@ -5,6 +5,7 @@
 from ingestion.load_throughput import load_throughput_data
 from ingestion.load_packet_stats import load_packet_stats
 from alignment.time_shift import align_packet_loss
+
 from topology.graph_builder import build_correlation_graph
 from topology.clustering import detect_link_communities
 from topology.infer_links import infer_link_mapping
@@ -14,6 +15,13 @@ from topology.correlation import (
     build_congestion_matrix,
     compute_correlation_matrix
 )
+
+from ps2.link_aggregation import aggregate_link_throughput
+from ps2.capacity_estimation import (
+    required_capacity_no_buffer,
+    required_capacity_with_buffer
+)
+
 
 def main():
     print("🚀 Starting FronthaulIQ pipeline...\n")
@@ -73,17 +81,14 @@ def main():
     # -------------------------
     print("📊 Building congestion-event correlation matrix...\n")
 
-    
-
     event_data = {
         cell: extract_windowed_congestion_events(
             aligned_packet_data[cell],
             loss_threshold=1,
-            window=5   # <-- key parameter
+            window=5
         )
-        for cell in common_cells    
+        for cell in common_cells
     }
-
 
     event_matrix = build_congestion_matrix(event_data)
     corr_matrix = compute_correlation_matrix(event_matrix)
@@ -92,16 +97,16 @@ def main():
     print("\nCorrelation matrix (rounded):")
     print(corr_matrix.round(2))
 
-    print("\n🏁 PS1 (Topology Identification) correlation stage complete.")
+    print("\n🏁 PS1 correlation computation complete.\n")
 
-        # -------------------------
+    # -------------------------
     # PS1: Graph-based topology inference
     # -------------------------
-    print("\n🕸️ Building correlation graph...")
+    print("🕸️ Building correlation graph...")
 
     G = build_correlation_graph(
         corr_matrix,
-        threshold=0.25   # noise-filtering threshold
+        threshold=0.25
     )
 
     print(f"Graph nodes: {G.number_of_nodes()}")
@@ -120,6 +125,35 @@ def main():
         print(f"{link} → Cells: {cells}")
 
     print("\n🏁 PS1 TOPOLOGY IDENTIFICATION COMPLETE ✅")
+
+        # -------------------------
+    # PS2: Capacity Estimation
+    # -------------------------
+    print("\n📈 PS2: Estimating fronthaul link capacities...\n")
+
+    # Convert throughput to slot-level if not already
+    from preprocessing.symbol_to_slot import convert_to_slot_level
+
+    slot_throughput = {
+        cell: convert_to_slot_level(throughput_data[cell])
+        for cell in throughput_data
+    }
+
+    link_throughput = aggregate_link_throughput(
+        slot_throughput,
+        link_mapping
+    )
+
+    print("🔢 Required Capacity per Link:\n")
+
+    for link, df in link_throughput.items():
+        cap_no_buf = required_capacity_no_buffer(df)
+        cap_buf = required_capacity_with_buffer(df)
+
+        print(f"{link}:")
+        print(f"  ▸ Required capacity (no buffer): {cap_no_buf:.2f} Gbps")
+        print(f"  ▸ Required capacity (with buffer): {cap_buf:.2f} Gbps\n")
+
 
 
 if __name__ == "__main__":
